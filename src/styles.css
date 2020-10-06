@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+/*.container {*/
+/*  display: flex;*/
+/*}*/
+
+/*.card-container {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-content: center;*/
+/*  flex-direction: row;*/
+/*  flex: 1;*/
+/*  height: 100%;*/
+/*  margin-top: 10px;*/
+/*  margin-right: 10%;*/
+/*  margin-left: 10%;*/
+/*  background-color: aqua;*/
+/*}*/
+
+/*.card {*/
+/*  display: flex;*/
+/*  border: 2px solid black;*/
+/*  flex: 1;*/
+/*  height: 100%;*/
+/*}*/

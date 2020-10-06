@@ -1,0 +1,53 @@
+<div fxLayout="row" fxLayoutAlign="center start" style="margin-top: 8px; margin-left: 15%; margin-right: 15%">
+  <div style="width: 34%;">
+    <div fxLayout="column" style="padding: 8px; border: 1px solid black; border-radius: 5px;">
+      <div *ngFor="let user of users" style="border: 1px solid black; margin: 2px; padding: 8px; border-radius: 5px">
+        <a (click)="loadServices(user)">
+          <div>
+            <b>{{user.name}}</b><br>
+            Услуг: {{user.enabledServices.length}} аб. плата   {{user.id}} руб.
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div style="width: 8px"></div>
+  <div style="border: 1px solid black; border-radius: 5px; width: 66%;">
+    <form fxLayout="column" fxLayoutAlign="start start" style="margin: 8px" [formGroup]="serviceForm">
+      <h2>Подключенные услуги</h2>
+      <input type="text" formControlName="search" style="width: 60%">
+      <div formArrayName="includedSrvs" fxLayout="column" fxLayoutGap="16px" style="padding: 8px" fxFill>
+        <div *ngFor="let service of serviceForm.controls['includedSrvs']['controls']; let i = index" fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+              <label>{{includedSrvs[i].title}}</label>
+            </div>
+          <div fxFlex></div>
+            <div>
+              <input type="button" value="X" style="width: 24px; height: 24px" (click)="deleteService(includedSrvs[i])">
+            </div>
+          </div>
+      </div>
+      <h2>Доступные услуги</h2>
+      <hr color="black" width="98%"/>
+      <div fxLayout="column" fxLayoutGap="16px" style="padding: 8px" fxFill>
+        <div *ngFor="let service of serviceForm.controls['excludedSrvs']['controls']; let i = index" fxLayout="row" fxLayoutAlign="space-between center">
+          <div>
+            <input type="checkbox">
+          </div>
+          <div>
+            <label>{{excludedSrvs[i].title}}</label>
+          </div>
+          <div fxFlex></div>
+          <div>
+            <label>{{excludedSrvs[i].fee}}</label>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end start">
+          <div>
+            <input type="submit" value="Подключить услуги" (click)="addServices()">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

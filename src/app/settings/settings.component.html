@@ -1,0 +1,44 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxFill  style="margin-top: 8px; height: 200px; padding-right: 30%; padding-left: 30%" >
+  <form [formGroup]="settingsForm" style="margin-top: 10px; border: 1px solid black; padding: 5px; border-radius: 5px"  fxLayoutGap="16px" fxLayout="column" fxFill>
+      <div fxLayout="row">
+        <div><label for="fio">ФИО</label></div>
+        <div fxFlex></div>
+        <div><input id="fio" formControlName="fio" disabled></div>
+      </div>
+      <div fxLayout="row">
+        <label for="name">Псевдоним</label>
+        <div fxFlex></div>
+        <input id="name" placeholder="Псевдоним" formControlName="name">
+      </div>
+      <div fxLayout="row">
+        <div>
+          <input type="checkbox" formControlName="notification">
+          <label>Оповещения</label>
+        </div>
+        <div fxFlex></div>
+        <div fxLayout="column" fxLayoutGap="8px">
+          <div fxLayout="row">
+            <label for="choice1">Email</label>
+            <div fxFlex></div>
+            <input type="radio" id="choice1" value="email" name="notificationRadio" formControlName="notificationRadio" [attr.disabled]="settingsForm.controls['notification'].value ? null : ''">
+            <input type="text" formControlName="email" [attr.disabled]="settingsForm.controls['notification'].value && settingsForm.controls['notificationRadio'].value == 'email' ? null : ''">
+            <div *ngIf="settingsForm.controls['email'].invalid">
+              <p>Введен некорректный адрес</p>
+            </div>
+          </div>
+          <div fxLayout="row">
+            <label for="choice2">Телефон</label>
+            <input type="radio" id="choice2" value="phone" name="notificationRadio" formControlName="notificationRadio" [attr.disabled]="settingsForm.controls['notification'].value ? null : ''">
+            <input type="text" formControlName="phone" [attr.disabled]="settingsForm.controls['notification'].value && settingsForm.controls['notificationRadio'].value == 'phone' ? null : ''">
+            <div *ngIf="settingsForm.controls['phone'].invalid">
+              <p>Введен некорректный адрес</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+      <button type="reset" (reset)="resetForm()">Отменить изменения</button>
+      <button type="submit" [disabled]="!settingsForm.touched" (submit)="submit()">Сохранить</button>
+    </div>
+  </form>
+</div>
